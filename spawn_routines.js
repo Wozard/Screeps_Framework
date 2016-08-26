@@ -1,10 +1,11 @@
 var buldSpawn = require('spawner_builder');
 var harvSpawn = require('spawner_harvester');
-var constants = require('constants')
+var constants = require('constants');
+var unit_spawner = require('unit_spawner');
 
 var spawners = [
-        buldSpawn.spawn,
-        harvSpawn.spawn
+        harvSpawn.spawn,
+        buldSpawn.spawn
     ];
 
 module.exports = {
@@ -22,7 +23,30 @@ function spawnUnits() {
     //get reference to main spawner (update this for multiple spawners later)
     var spawn = Game.spawns[constants.spawn_main()];
     
-    for (i = 0; i < spawners.length; i++) {
-        spawners[i](spawn);
+    
+    //Headcount
+    var harvList = _.filter(Game.creeps, function(o) {return o.memory.role == 'harvester'});
+    var buldList = _.filter(Game.creeps, function(o) {return o.memory.role == 'builder'});
+    
+    
+    //Do some spawning    TODO: Make spawning more intelligent
+    //I want to move the logic of 'what do I spawn next?' to a single module, since
+    //answering that question requires knowing what the current creeps are
+    
+    if (harvList.length < 2) {
+        unit_spawner.spawn(spawn, constants.preset_harvester_1(), numName('harv_'), { role: 'harvester' });
     }
+    
+    // for (i = 0; i < spawners.length; i++) {
+    //     spawners[i](spawn);
+    // }
+}
+
+//This function provides the closest-to-zero numbered name, given a base (like 'buld_')
+function numName(base) {
+    var i = 0;
+    while(Game.creeps[base + i]) {
+        i++;
+    }
+    return base + i;
 }

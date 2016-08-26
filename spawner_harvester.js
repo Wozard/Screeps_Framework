@@ -34,7 +34,7 @@ function spawnHarvester(spawn) {
                     && spawn.energy < constants.preset_harvester_2_cost()) {
             //spawn tier-1
             var cName = constants.preset_harvester_1_name(curHarvestersCount + 1);
-            unit_spawner.spawn(spawn, constants.preset_harvester_3(), cName, { role: unitRole });
+            unit_spawner.spawn(spawn, constants.preset_harvester_1(), cName, { role: unitRole });
             
         //looks like we couldn't afford to make any harvesters this tick
         } else {

@@ -9,7 +9,7 @@ function aiTick() {
         var creep = Game.creeps[c];
         var curCarried = _.sum(creep.carry);
         if (creep.memory.role == constants.unit_harvester()) {
-            if (curCarried < creep.energyCapacity) {
+            if (curCarried < creep.carryCapacity) {
                 var sources = creep.room.find(FIND_SOURCES);
                 for (i = 0; i < sources.length; i++) {
                     if (sources[i].energy > 0) {
@@ -20,7 +20,6 @@ function aiTick() {
                     }
                 }
             } else {
-                creep.say(curCarried + '/' + creep.carryCapacity);
                 var targets = creep.room.find(FIND_STRUCTURES, {
                                             filter: function(structure) {
                                                 return (structure.structureType == STRUCTURE_EXTENSION
