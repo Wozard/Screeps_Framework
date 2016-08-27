@@ -2,6 +2,7 @@ var buldSpawn = require('spawner_builder');
 var harvSpawn = require('spawner_harvester');
 var constants = require('constants');
 var unit_spawner = require('unit_spawner');
+var unit_counts = require('unit_counts');
 
 var spawners = [
         harvSpawn.spawn,
@@ -25,8 +26,8 @@ function spawnUnits() {
     
     
     //Headcount
-    var harvList = _.filter(Game.creeps, function(o) {return o.memory.role == 'harvester'});
-    var buldList = _.filter(Game.creeps, function(o) {return o.memory.role == 'builder'});
+    var harvList = unit_counts.list('harvester');
+    var buldList = unit_counts.list('builder');
     
     
     //Do some spawning    TODO: Make spawning more intelligent
@@ -35,6 +36,8 @@ function spawnUnits() {
     
     if (harvList.length < 2) {
         unit_spawner.spawn(spawn, constants.preset_harvester_1(), numName('harv_'), { role: 'harvester' });
+    } else if (buldList.length < 1) {
+        unit_spawner.spawn(spawn, constants.preset_builder_1(), numName('buld_'), {role: 'builder'});
     }
     
     // for (i = 0; i < spawners.length; i++) {
