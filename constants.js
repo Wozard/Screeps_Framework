@@ -4,6 +4,7 @@ const HARVESTER_T3_BODY = [WORK, WORK, WORK, MOVE, MOVE, MOVE, CARRY, CARRY, CAR
 const BUILDER_T1_BODY   = [WORK, MOVE, CARRY];
 const BUILDER_T2_BODY   = [WORK, WORK, MOVE, MOVE, CARRY, CARRY];
 const BUILDER_T3_BODY   = [WORK, WORK, WORK, MOVE, MOVE, MOVE, CARRY, CARRY, CARRY];
+const UPGRADER_T1_BODY = [WORK, MOVE, CARRY];
 
 module.exports = {
     //unit names
@@ -45,7 +46,10 @@ module.exports = {
     //Tier 3
     preset_builder_3:      function() { return BUILDER_T3_BODY },
     preset_builder_3_cost: function() { return getCost(BUILDER_T3_BODY) },
-    preset_builder_3_name: function(_id) { return 'builder_3_' + _id }
+    preset_builder_3_name: function(_id) { return 'builder_3_' + _id },
+    
+    /*---------UPGRADERS----------*/
+    preset_upgrader_1:     function() { return UPGRADER_T1_BODY}
 };
 
 //Utilities

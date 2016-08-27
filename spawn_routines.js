@@ -28,6 +28,7 @@ function spawnUnits() {
     //Headcount
     var harvList = unit_counts.list('harvester');
     var buldList = unit_counts.list('builder');
+    var upgrList = unit_counts.list('upgrader');
     
     
     //Do some spawning    TODO: Make spawning more intelligent
@@ -36,6 +37,8 @@ function spawnUnits() {
     
     if (harvList.length < 2) {
         unit_spawner.spawn(spawn, constants.preset_harvester_1(), numName('harv_'), { role: 'harvester' });
+    } else if (upgrList.length < 1) {
+        unit_spawner.spawn(spawn, constants.preset_builder_1(), numName('upgr_'), {role: 'upgrader'});
     } else if (buldList.length < 1) {
         unit_spawner.spawn(spawn, constants.preset_builder_1(), numName('buld_'), {role: 'builder'});
     }
