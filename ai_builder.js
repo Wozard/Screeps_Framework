@@ -18,7 +18,7 @@ function buldTick() {
     if (curCarried < creep.carryCapacity) {
         utils.mineEnergy(creep);
     } else {
-        utils.storeEnergy(creep);
+        utils.buildStructure(creep);
     }
   }
 }
