@@ -10,16 +10,16 @@ module.exports = {
     //unit names
     unit_harvester:          function() { return 'harvester'},
     unit_builder:            function() { return 'builder' },
-    
+
     //building names
     spawn_main:              function() { return 'Spawn1' },
-    
+
     //minimum unit counts
     min_harvesters_required: function() { return 5 },
     min_builders_required:   function() { return 3 },
-    
+
     //unit stat presets
-    
+
     /*----------HARVESTERS----------*/
     //Tier 1
     preset_harvester_1:      function() { return HARVESTER_T1_BODY },
@@ -33,7 +33,7 @@ module.exports = {
     preset_harvester_3:      function() { return HARVESTER_T3_BODY },
     preset_harvester_3_cost: function() { return getCost(HARVESTER_T3_BODY) },
     preset_harvester_3_name: function(_id) { return 'harvester_3_' + _id },
-    
+
     /*----------BUILDERS----------*/
     //Tier 1
     preset_builder_1:      function() { return BUILDER_T1_BODY },
@@ -47,7 +47,7 @@ module.exports = {
     preset_builder_3:      function() { return BUILDER_T3_BODY },
     preset_builder_3_cost: function() { return getCost(BUILDER_T3_BODY) },
     preset_builder_3_name: function(_id) { return 'builder_3_' + _id },
-    
+
     /*---------UPGRADERS----------*/
     preset_upgrader_1:     function() { return UPGRADER_T1_BODY}
 };
@@ -62,13 +62,3 @@ function getCost(bodyparts) {
     }
     return total;
 }
-
-
-
-
-
-
-
-
-
-

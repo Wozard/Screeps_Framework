@@ -7,18 +7,18 @@ module.exports = {
 };
 
 function buldTick() {
-  //Grab list of active builders
-  var buldList = counts.list('builder');
+    //Grab list of active builders
+    var buldList = counts.list('builder');
 
 
-  for (var creep of buldList) {
-    var curCarried = _.sum(creep.carry);
+    for (var creep of buldList) {
+        var curCarried = _.sum(creep.carry);
 
-    //Behavior; currently mimics harvester
-    if (curCarried < creep.carryCapacity) {
-        utils.mineEnergy(creep);
-    } else {
-        utils.buildStructure(creep);
+        //Behavior; currently mimics harvester
+        if (curCarried < creep.carryCapacity) {
+            utils.mineEnergy(creep);
+        } else {
+            utils.buildStructure(creep);
+        }
     }
-  }
 }

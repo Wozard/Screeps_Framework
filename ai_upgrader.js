@@ -6,16 +6,26 @@ module.exports = {
 };
 
 function aiTick() {
-  upgrList = unit_counts.list('upgrader');
+    var upgrList = unit_counts.list('upgrader');
 
-  for (var upgrCreep of upgrList) {
-    var curCarried = _.sum(upgrCreep.carry);
+    for (var creep of upgrList) {
+        var curCarried = _.sum(creep.carry);
 
-    //Mine until full, store energy in room controller
-    if (curCarried < upgrCreep.carryCapacity) {
-        utils.mineEnergy(upgrCreep);
-    } else {
-        utils.upgradeRoom(upgrCreep);
+        //Check if switching between mining and upgrading this tick
+        if(creep.memory.upgrading && creep.carry.energy == 0) {
+            creep.memory.upgrading = false;
+            creep.say('harvesting');
+        }
+        if(!creep.memory.upgrading && creep.carry.energy == creep.carryCapacity) {
+            creep.memory.upgrading = true;
+            creep.say('upgrading');
+        }
+
+        //Mine until full, store energy in room controller
+        if (creep.memory.upgrading) {
+            utils.upgradeRoom(creep);
+        } else {
+            utils.mineEnergy(creep);
+        }
     }
-  }
 }
